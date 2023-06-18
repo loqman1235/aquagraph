@@ -22,7 +22,7 @@ ChartJS.register(
   Legend
 );
 
-import { Country, State, City } from "country-state-city";
+import { State, City } from "country-state-city";
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -101,8 +101,6 @@ const App = () => {
         return;
       }
       setErrors({});
-      setState("");
-      setCity("");
       setLong("");
       setLat("");
       setStartDate("");
@@ -155,6 +153,8 @@ const App = () => {
 
     const options = {
       responsive: true,
+      maintainAspectRatio: false,
+      aspectRatio: 2,
       scales: {
         y: {
           beginAtZero: true,
@@ -172,6 +172,7 @@ const App = () => {
           },
         },
       },
+
       plugins: {
         tooltip: {
           callbacks: {
@@ -334,7 +335,7 @@ const App = () => {
         </div>
         <button
           disabled={isLoading}
-          className={`w-full md:w-1/2 p-4 rounded-xl ${
+          className={`w-full md:w-1/2 p-4 rounded-xl hover:bg-teal-600 transition duration-500 ${
             isLoading ? "bg-teal-500/50" : "bg-teal-500"
           } text-white font-semibold`}
         >
@@ -343,14 +344,19 @@ const App = () => {
       </form>
       {/* Graph */}
       {precipitationData && (
-        <h3 className="mb-4 px-5 text-center text-xl md:text-2xl font-bold">
-          Quantité de pluie et de la vitesse du vent à{" "}
-          {city === "Algiers" ? "Alger" : city}
-        </h3>
+        <>
+          <h3 className="mb-4 px-5 text-center text-xl md:text-2xl font-bold">
+            Quantité de pluie et de la vitesse du vent à{" "}
+            {city === "Algiers" ? "Alger" : city}
+          </h3>
+          <div className="w-full px-5">
+            <div className="bg-white shadow-2xl min-h-[500px] rounded-xl">
+              {renderBarGraph()}
+            </div>
+          </div>
+        </>
       )}
-      <div className="w-full px-5">
-        <div className="bg-white shadow-2xl rounded-xl">{renderBarGraph()}</div>
-      </div>
+
       <footer className="mt-20 flex items-center justify-center p-5">
         <p className="text-center">
           Cette application a été développée par{" "}
