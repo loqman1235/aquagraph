@@ -23,6 +23,8 @@ ChartJS.register(
 );
 
 import { State, City } from "country-state-city";
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [city, setCity] = useState("");
@@ -193,11 +195,7 @@ const App = () => {
 
   return (
     <>
-      <nav className="w-full h-16 bg-[#1d1e20] flex items-center justify-center shadow-sm mb-10">
-        <a href="/" className="text-2xl font-bold tracking-tight text-white">
-          Aqua<span className="text-teal-500">Graph</span>
-        </a>
-      </nav>
+      <Navbar />
       <div className="w-full flex items-center flex-col px-5">
         <h1 className="font-bold text-2xl md:text-3xl text-center mb-3 text-[#1d1e20]">
           Analyse de la quantité de pluie et de la vitesse du vent.
@@ -357,14 +355,7 @@ const App = () => {
         </>
       )}
 
-      <footer className="mt-20 flex items-center justify-center p-5">
-        <p className="text-center">
-          Cette application a été développée par{" "}
-          <a href="#" className="text-teal-500 font-bold">
-            Loqman Djefafla
-          </a>
-        </p>
-      </footer>
+      <Footer />
     </>
   );
 };
